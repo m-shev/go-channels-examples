@@ -23,7 +23,7 @@ func graceful(start time.Time) {
 func main() {
 	//example1()
 	//example2()
-	//example3()
+	example3()
 }
 
 func example1() {
@@ -32,7 +32,7 @@ func example1() {
 	clear()
 
 	for {
-		fmt.Println(time.Now().Local().Format("15:4:5"))
+		fmt.Println(time.Now().Local().Format("15:04:5"))
 		time.Sleep(1000 * time.Millisecond)
 		clear()
 	}
@@ -65,6 +65,7 @@ func example2() {
 func example3() {
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM, syscall.SIGINT, syscall.SIGKILL)
+
 	start := time.Now()
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)

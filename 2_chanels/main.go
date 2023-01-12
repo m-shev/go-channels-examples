@@ -6,12 +6,6 @@ import (
 	"time"
 )
 
-func main() {
-	//first()
-	//second()
-	third()
-}
-
 func writer(c chan<- int, start int, end int, delay time.Duration, wg *sync.WaitGroup) {
 	if wg != nil {
 		defer wg.Done()
@@ -31,7 +25,13 @@ func reader(c <-chan int, name string) {
 	fmt.Println("Reader: finished")
 }
 
-func first() {
+func main() {
+	//example1()
+	//example2()
+	//example3()
+}
+
+func example1() {
 	c := make(chan int)
 
 	go reader(c, "Reader1")
@@ -39,7 +39,7 @@ func first() {
 	writer(c, 0, 10, 500, nil)
 }
 
-func second() {
+func example2() {
 	c := make(chan int)
 
 	go reader(c, "Reader1")
@@ -55,7 +55,7 @@ func second() {
 	wg.Wait()
 }
 
-func third() {
+func example3() {
 	c := make(chan int)
 
 	go reader(c, "Reader1")
